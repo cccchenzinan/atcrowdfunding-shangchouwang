@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+	<!-- 指定日志输出的地方:appender：追加 -->
+	<!-- Appender是一个接口。代表日志能输出到那些位置： ConsoleAppender:控制台 FileAppender：文件 <encoder>：编码 
+		=pattern:指定格式%d{HH:mm:ss.SSS}（输出当前时间{时间的格式}）；%thread：输出当前线程 类名都打印全类名（默认）；如果类名太长，进行缩写 -->
+	<appender name="haha" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{360} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 用logger单独设置指定包的级别 -->
+	<!-- <logger name="com.atguigu.atcrowdfunding.mapper" level="debug" -->
+	<!-- additivity="false"> -->
+	<!-- <appender-ref ref="haha"/> -->
+	<!-- </logger> -->
+	<logger name="com.atguigu.atcrowdfunding" level="debug"
+		additivity="false">
+		<appender-ref ref="haha" />
+	</logger>
+
+
+
+	<!-- 日志：从低到高；只会打印指定级别以后的; additivity表示是否将日志信息反馈给root DEBUG==》INFO===》WARN===》ERROR 
+		<logger name="com.atguigu.atcrowdfunding.mapper" level="debug" additivity="false"> 
+		<appender-ref ref="STDOUT"/> </logger> -->
+	<!-- root根级别，没有用logger设置的就默认用root指定的级别 -->
+	<root level="info">
+		<appender-ref ref="haha" />
+	</root>
+</configuration> 

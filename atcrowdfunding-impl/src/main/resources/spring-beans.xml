@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<!-- 引入外部配置文件 -->
+	<context:property-placeholder location="classpath:db.properties"/>
+
+	<!-- 1、包扫描所有组件，除过web组件 -->
+	<context:component-scan base-package="com.atguigu">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	</context:component-scan>
+	
+	<!-- 2、数据源 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="url" value="${datasource.url}"></property>
+		<property name="driverClassName" value="${datasource.driverClass}"></property>
+		<property name="username" value="${datasource.username}"></property>
+		<property name="password" value="${datasource.password}"></property>
+	</bean>
+	
+	
+	
+</beans>

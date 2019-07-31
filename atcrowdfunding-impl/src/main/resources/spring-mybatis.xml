@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+
+	<!-- 1、整合MyBatis -->
+	<!-- SqlSession工厂 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--指定数据源 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- mapper文件的位置，每个类对应的mapper位置 -->
+		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"></property>
+		<!-- 自定mybatis全局配置文件的位置 -->
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
+	</bean>
+
+
+	<!-- 指定mapper接口在哪里 -->
+	<!-- <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer"> -->
+	<!-- <property name="basePackage" value="com.atguigu.atcrowdfunding.mapper"></property> -->
+	<!-- </bean> -->
+	<!-- 上下等同 -->
+	<mybatis-spring:scan base-package="com.atguigu.atcrowdfunding.mapper" />
+</beans>

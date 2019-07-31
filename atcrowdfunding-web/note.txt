@@ -1,0 +1,31 @@
+1、三大框架整合
+	1)web.xml
+		1、SpringMVC的前端控制器：alt+/选dispatcherservlet   
+			路径为<param-value>classPath：springmvc.xml</param-value>
+			拦截规则<url-pattern>/</url-pattern>
+		2、配置Spring容器启动：alt+/选contextloaderlistener
+		创建在impl层  spring-beans.xml(管理容器中的所有组件)
+				  spring-mybatis.xml(spring-mybatis整合)
+		路径为<param-value>classpath*:spring-*.xml</param-value>		  
+		3、Servilet、Filter、Listener
+			字符编码过滤器(Filter)放第一位CharacterEncodingFilter
+			rest风格过滤器(Filter)HiddenHttpMethodFilter
+	2)Spring.xml
+		1、包扫描context:component-scan    
+			排除context:exclude-filter指定Controller和ControllerAdvice
+		2、数据库(bean)	引入外部文件context:property-placeholder  location
+		class=DruidDataSource全类名
+	3)SpringMVC.xml
+		1、包扫描context:component-scan    
+			默认扫描所有改为false  use-default-filters="false"
+			用只包含context:include-filter指定Controller和ControllerAdvice
+		2、视图解析器<bean>	InternalResourceViewResolver全类名
+			属性property指定前缀prefix
+					 	    后缀suffix
+		3、放行静态资源	
+		<mvc:default-servlet-handler/><mvc:annotation-driven></mvc:annotation-driven>		 	    
+	4)MyBatis.xml
+		1、整合MyBatis	Spring与MyBatis整合包MapperScannerConfigurer
+			配置SqlSession工厂
+			指定mapper接口位置
+	5)其他
