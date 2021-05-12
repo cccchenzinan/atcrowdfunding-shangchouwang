@@ -74,7 +74,7 @@
 
 
 		<!-- Security -->
-		<spring-security-web.version>4.2.10.RELEASE</spring-security-web.version>
+		<spring-security-web.version>5.2.10.RELEASE</spring-security-web.version>
 		<spring-security-config.version>4.2.10.RELEASE</spring-security-config.version>
 		<spring-security-taglibs.version>4.2.10.RELEASE</spring-security-taglibs.version>
 
